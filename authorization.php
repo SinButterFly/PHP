@@ -14,8 +14,9 @@ $result = $stmt->fetch();
 if ($_POST['submit'])
     {
     if(md5($password) == $result['password']){
-        echo 'Авторизация пройдена';
         $_SESSION['auth'] = true;
+        header("Location: close_page.php");
+        exit;
     }else echo 'Такого пользователя не существует';
 }
 
