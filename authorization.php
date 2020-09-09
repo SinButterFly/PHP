@@ -6,7 +6,9 @@ $dbh = new pdo ('mysql:host=localhost;dbname=form', "root", "");
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$stmt = $dbh->query('SELECT email, password FROM `users` WHERE email="'.$email.'"');
+$stmt = $dbh->query('SELECT user_name, email, password FROM `users` WHERE email="'.$email.'"');
+
+
 
 $result = $stmt->fetch();
 
@@ -14,9 +16,11 @@ $result = $stmt->fetch();
 if ($_POST['submit'])
     {
     if(md5($password) == $result['password']){
-        $_SESSION['auth'] = true;
+        $user_name = $result['user_name'];
+        $_SESSION['user_name'] = $user_name;
         header("Location: close_page.php");
-        exit;
+
+
     }else echo 'Такого пользователя не существует';
 }
 

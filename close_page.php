@@ -1,22 +1,9 @@
 <?php
-$dbh = new pdo ('mysql:host=localhost;dbname=form', "root", "");
+session_start();
 
-$dbh->query("INSERT INTO users (user_name,email,phone_number,password) VALUE ('$user_name','$email', '$phone_number', '$password')");
-
+echo "Привет, " . $_SESSION['user_name'];
 ?>
+<form action="exit.php" method="post">
+    <input type="submit" value="Выход">
+</form>
 
-<!doctype html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <?php
-        echo "Hello .'$user_name.";
-    ?>
-</body>
-</html>

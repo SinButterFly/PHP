@@ -7,14 +7,16 @@
 
     $dbh = new pdo ('mysql:host=localhost;dbname=form', "root", "");
 
+if ($_POST['submit']){
     if($password == $confirm_password){
         $password= md5($password);
         $dbh->query("INSERT INTO users (user_name,email,phone_number,password) VALUE ('$user_name','$email', '$phone_number', '$password')");
+        header("Location: authorization.php");
     }else{
         echo 'Пароли не совпадают';
     }
+}
 ?>
-
 <!doctype html>
 <html lang="ru">
 <head>
